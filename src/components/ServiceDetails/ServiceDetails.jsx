@@ -20,16 +20,12 @@ const ServiceDetails = () => {
   } = useLoaderData();
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch(`http://localhost:5000/reviews/${service_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => toast.error(error.message));
-  }, []);
-  console.log(reviews);
-  const serviceReviews = reviews.filter(
-    (review) => review.service_id === service_id
-  );
-  console.log(serviceReviews);
+  }, [service_id, reviews]);
+
   return (
     <div className="my-8 mx-8 md:mx-24">
       {/* details -section */}
@@ -74,7 +70,7 @@ const ServiceDetails = () => {
           Client Review on {service_name}
         </h2>
         <div className="review-container grid md:grid-cols-2 gap-5">
-          {serviceReviews.map((review) => (
+          {reviews.map((review) => (
             <ReviewCard key={review._id} review={review}></ReviewCard>
           ))}
         </div>
