@@ -11,15 +11,13 @@ const Footer = () => {
             <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full dark:bg-violet-400 md:mr-40">
               <Link to="/" className="flex items-center text-3xl ">
                 {" "}
-                <img src={logo} alt="" className="h-10" />
+                <img src={logo} alt="" className="h-12" />
                 Interior
               </Link>
             </div>
             <ul className="flex flex-wrap items-center space-x-4 sm:space-x-8 ">
               <li>
-                <a rel="noopener noreferrer" href="#">
-                  Terms of Use
-                </a>
+                <Link to="/services">Services</Link>
               </li>
               <li>
                 <a rel="noopener noreferrer" href="#">

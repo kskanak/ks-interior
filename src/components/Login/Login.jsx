@@ -1,81 +1,53 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
 import { AuthContext } from "../../routes/AuthProvider";
 import useTitle from "../../useTitle/UseTitle";
 
-const Register = () => {
-  useTitle("Register");
+const Login = () => {
+  useTitle("Login");
   const {
     user,
-    handleSignUp,
-    updateUserProfile,
+    handleLogin,
     handleGooglesignIn,
     handleGithubsignIn,
+    passwordReset,
   } = useContext(AuthContext);
-  const [error, setError] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
-  const [password, setPassword] = useState("");
-
-  const handlePassword = (e) => {
-    console.log(e.target.value);
-    const password = e.target.value;
-    const lengthtest = password.length < 6;
-    const noCapital = !/(?=.*[A-Z])/.test(password);
-    const noSpecial = !/(?=.*[!@#$&*])/.test(password);
-
-    if (lengthtest) {
-      setError("Password length should be at least 6 characters");
-    } else if (noCapital) {
-      setError("Password should contain one capital letters");
-    } else if (noSpecial) {
-      setError("Password should contain one special characters");
-    } else {
-      setError("");
-      setPassword(password);
-    }
-  };
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const [passWordResetMail, setPasswordResetMail] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const displayName = form.username.value;
-    const photoURL = form.photoURL.value;
+    const password = form.password.value;
     const email = form.email.value;
 
-    // registration
-    handleSignUp(email, password)
+    // login
+    handleLogin(email, password)
       .then((result) => {
         const user = result.user;
-        setUserInfo(photoURL, displayName);
-
-        toast.success("Congratulation your accounts has been created");
-
+        toast.info("Logged into your account");
+        navigate(from, { replace: true });
         form.reset();
+        console.log(user);
       })
       .catch((error) => {
         toast.error(error.message);
         form.reset();
       });
   };
-
-  const setUserInfo = (photoURL, displayName) => {
-    const profile = {
-      photoURL: photoURL,
-      displayName: displayName,
-    };
-    updateUserProfile(profile);
-  };
-
   //   handleGoogle
   const handleGoogleclick = () => {
     handleGooglesignIn(googleProvider)
       .then((result) => {
         const user = result.user;
-        toast.info("logged in with Google ID");
+        navigate(from, { replace: true });
+        toast.info("Logged in with Google ID");
       })
       .catch((error) => {
         toast.error(error.message);
@@ -86,54 +58,41 @@ const Register = () => {
     handleGithubsignIn(githubProvider)
       .then((result) => {
         const user = result.user;
-        toast.info("logged in with Github ID");
+        navigate(from, { replace: true });
+        toast.info("Logged in with Github ID");
       })
       .catch((error) => {
         console.log(error);
         toast.error(error.message);
       });
   };
+  // handle email for password reset
 
+  const handleEmail = (e) => {
+    setPasswordResetMail(e.target.value);
+  };
+
+  // handle password reset
+  const handlePasswordReset = () => {
+    passwordReset(passWordResetMail)
+      .then((result) => {
+        setPasswordResetMail(" ");
+        toast.info("Password reset email sent, please check !");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
-    <div className=" bg-slate-600 py-24 px-10 md:px-10">
-      <div className=" md:w-2/5 mx-auto p-8 space-y-3 rounded-xl bg-gradient-to-tr from-cyan-700 via-gray-900 to-sky-700 text-gray-100 ">
-        <h1 className="text-2xl font-bold text-center">Registration Form</h1>
+    <div className=" bg-slate-700 py-24 px-10 md:px-10">
+      <div className=" md:w-2/5 mx-auto p-8 space-y-3 rounded-xl bg-gradient-to-tl from-indigo-600 via-stone-600 to-sky-800 text-gray-100 ">
+        <h1 className="text-2xl font-bold text-center">Login Page</h1>
         <form
           noValidate=""
-          onSubmit={handleSubmit}
           action=""
+          onSubmit={handleSubmit}
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
-          <div className="space-y-1 text-sm">
-            <label
-              htmlFor="username"
-              className="block dark:text-gray-400 text-left"
-            >
-              Username
-            </label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-gray-800 focus:dark:border-violet-400"
-            />
-          </div>
-          <div className="space-y-1 text-sm">
-            <label
-              htmlFor="photoURL"
-              className="block dark:text-gray-400 text-left"
-            >
-              PhotoURL
-            </label>
-            <input
-              type="text"
-              name="photoURL"
-              id="photoURL"
-              placeholder="photoURL"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-gray-800 focus:dark:border-violet-400"
-            />
-          </div>
           <div className="space-y-1 text-sm">
             <label
               htmlFor="email"
@@ -144,15 +103,12 @@ const Register = () => {
             <input
               type="email"
               name="email"
+              onChange={handleEmail}
               id="email"
-              required
               placeholder="email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-gray-800 focus:dark:border-violet-400"
             />
           </div>
-          <p>
-            <small className="text-red-500">{error.email}</small>
-          </p>
           <div className="space-y-1 text-sm">
             <label
               htmlFor="password"
@@ -164,22 +120,31 @@ const Register = () => {
               type="password"
               name="password"
               id="password"
-              onChange={handlePassword}
-              required
               placeholder="Password"
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 text-gray-800 focus:dark:border-violet-400"
             />
+            <div className="flex justify-end text-xs dark:text-gray-400">
+              Forgot password ?
+              <a
+                className=" btn-link btn-sm cursor-pointer text-orange-500"
+                onClick={handlePasswordReset}
+              >
+                {" "}
+                reset
+              </a>
+            </div>
           </div>
-          {error && (
-            <p>
-              <small className="text-red-500">{error}</small>
-            </p>
-          )}
-          <button className="block w-full p-3 text-center rounded-md text-gray-900 font-medium bg-gradient-to-tl from-blue-200 via-red-500 to-cyan-500 duration-150 hover:bg-gradient-to-r from-transparent via-cyan-700 to-rose-500">
-            Register
+          <button className="block w-full p-3 text-center rounded-md text-gray-900 font-semibold bg-gradient-to-tl from-blue-200 via-red-500 to-cyan-500 duration-150 hover:bg-gradient-to-r from-transparent via-cyan-700 to-rose-500">
+            Login
           </button>
         </form>
-
+        <div className="flex items-center pt-4 space-x-1">
+          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+          <p className="px-3 text-sm dark:text-gray-400">
+            Login with social accounts
+          </p>
+          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+        </div>
         <div className="flex justify-center space-x-4">
           <button
             aria-label="Log in with Google"
@@ -210,9 +175,9 @@ const Register = () => {
           </button>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-400">
-          Already have an account?
-          <Link to="/login" className="underline dark:text-gray-100 mx-3">
-            Sign In
+          Doesn't have an account?
+          <Link to="/register" className="underline dark:text-gray-100 mx-3">
+            Sign Up
           </Link>
         </p>
       </div>
@@ -220,4 +185,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

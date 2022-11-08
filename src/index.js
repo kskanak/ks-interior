@@ -6,14 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider } from "react-photo-view";
+import AuthProvider from "./routes/AuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <PhotoProvider>
-      <App />
-      <ToastContainer />
-    </PhotoProvider>
+    <AuthProvider>
+      <PhotoProvider>
+        <App />
+        <ToastContainer />
+      </PhotoProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 

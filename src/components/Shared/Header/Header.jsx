@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../../../assets/icon.png";
+import { FaUser } from "react-icons/fa";
+import { AuthContext } from "../../../routes/AuthProvider";
 
 const Header = () => {
+  const { user, handleLogout } = useContext(AuthContext);
   const menuItem = (
     <>
       <li>
         <NavLink
           to="/home"
           className={({ isActive }) =>
-            isActive ? "text-orange-700" : undefined
+            isActive ? "text-green-500" : undefined
           }
         >
           Home
@@ -19,7 +23,7 @@ const Header = () => {
         <NavLink
           to="/services"
           className={({ isActive }) =>
-            isActive ? "text-orange-700" : undefined
+            isActive ? "text-green-500" : undefined
           }
         >
           Services
@@ -29,7 +33,7 @@ const Header = () => {
         <NavLink
           to="/reviews"
           className={({ isActive }) =>
-            isActive ? "text-orange-700" : undefined
+            isActive ? "text-green-500" : undefined
           }
         >
           Reviews
@@ -39,7 +43,7 @@ const Header = () => {
         <NavLink
           to="/addservices"
           className={({ isActive }) =>
-            isActive ? "text-orange-700" : undefined
+            isActive ? "text-green-500" : undefined
           }
         >
           Add Services
@@ -49,7 +53,7 @@ const Header = () => {
         <NavLink
           to="/blog"
           className={({ isActive }) =>
-            isActive ? "text-orange-700" : undefined
+            isActive ? "text-green-500" : undefined
           }
         >
           BLog
@@ -57,6 +61,15 @@ const Header = () => {
       </li>
     </>
   );
+  const handleSignout = () => {
+    handleLogout()
+      .then((result) => {
+        toast.info("Sign out successfull");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div className="">
       <div className="navbar bg-gradient-to-r from-green-400 via-cyan-900 to-blue-500 text-white px-8 md:px-24">
@@ -96,7 +109,33 @@ const Header = () => {
           <ul className="menu menu-horizontal p-0">{menuItem}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Get started</a>
+          <div className="userInfo text-white">
+            {user ? (
+              <img
+                src={user.photoURL}
+                title={user.displayName}
+                className="h-8 w-8 rounded-full"
+              />
+            ) : (
+              <FaUser />
+            )}
+          </div>
+          {user && user?.uid ? (
+            <button
+              className="btn btn-outline btn-accent btn-sm mx-2"
+              onClick={handleSignout}
+            >
+              LogOut
+            </button>
+          ) : (
+            <div className="login-regis-btn">
+              <Link to="/login">
+                <button className=" px-2 py-2 bg-gradient-to-br from-black via-orange-500 to-white rounded-lg hover:bg-gradient-to-tl from-blue-200 via-red-500 to-cyan-500 ml-3 text-white">
+                  Login
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
