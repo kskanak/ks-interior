@@ -30,26 +30,30 @@ const Header = () => {
           Services
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/reviews"
-          className={({ isActive }) =>
-            isActive ? "text-green-500" : undefined
-          }
-        >
-          Reviews
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/addservices"
-          className={({ isActive }) =>
-            isActive ? "text-green-500" : undefined
-          }
-        >
-          Add Services
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/reviews"
+              className={({ isActive }) =>
+                isActive ? "text-green-500" : undefined
+              }
+            >
+              Reviews
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/addservices"
+              className={({ isActive }) =>
+                isActive ? "text-green-500" : undefined
+              }
+            >
+              Add Services
+            </NavLink>
+          </li>
+        </>
+      )}
       <li>
         <NavLink
           to="/blog"
