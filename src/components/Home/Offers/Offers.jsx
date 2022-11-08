@@ -18,13 +18,9 @@ const Offers = () => {
               <span>For New Year 2023:</span>
               <span className="font-bold text-lg">KS Interior</span>
             </div>
-            <a
-              href="#"
-              rel="noreferrer noopener"
-              className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400"
-            >
+            <p className="border-2 rounded-lg px-3 py-2 font-semibold">
               Grave Offer
-            </a>
+            </p>
           </div>
         </div>
       </div>
