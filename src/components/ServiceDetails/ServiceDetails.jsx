@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { toast } from "react-toastify";
 import ReviewCard from "./ReviewCard";
+import { AuthContext } from "../../routes/AuthProvider";
+import Reviewform from "./Reviewform";
 
 const ServiceDetails = () => {
+  const { user } = useContext(AuthContext);
   const {
     service_id,
     about,
@@ -22,10 +25,11 @@ const ServiceDetails = () => {
       .then((data) => setReviews(data))
       .catch((error) => toast.error(error.message));
   }, []);
+  console.log(reviews);
   const serviceReviews = reviews.filter(
     (review) => review.service_id === service_id
   );
-
+  console.log(serviceReviews);
   return (
     <div className="my-8 mx-8 md:mx-24">
       {/* details -section */}
@@ -74,6 +78,22 @@ const ServiceDetails = () => {
             <ReviewCard key={review._id} review={review}></ReviewCard>
           ))}
         </div>
+      </div>
+      <div className="user-review-section">
+        {user ? (
+          <Reviewform
+            service_id={service_id}
+            service_name={service_name}
+          ></Reviewform>
+        ) : (
+          <p className="text-3xl font-medium mb-8 rounded-lg py-1 ">
+            Please{" "}
+            <Link to="/login" className="text-blue-600">
+              Login
+            </Link>{" "}
+            to send your Reviews
+          </p>
+        )}
       </div>
     </div>
   );

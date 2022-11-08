@@ -27,12 +27,12 @@ const Register = () => {
     const noCapital = !/(?=.*[A-Z])/.test(password);
     const noSpecial = !/(?=.*[!@#$&*])/.test(password);
 
-    if (lengthtest) {
-      setError("Password length should be at least 6 characters");
-    } else if (noCapital) {
+    if (noCapital) {
       setError("Password should contain one capital letters");
     } else if (noSpecial) {
       setError("Password should contain one special characters");
+    } else if (lengthtest) {
+      setError("Password length should be at least 6 characters");
     } else {
       setError("");
       setPassword(password);
