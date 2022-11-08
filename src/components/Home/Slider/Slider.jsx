@@ -14,7 +14,7 @@ import img8 from "../../../assets/slider_image/img8.jpg";
 
 const Slider = () => {
   return (
-    <div className="slider-container">
+    <div className="slider-container h-72 md:h-[600px]">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
