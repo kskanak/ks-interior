@@ -2,6 +2,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import { AuthContext } from "../../routes/AuthProvider";
 import useTitle from "../../useTitle/UseTitle";
 
@@ -31,7 +32,7 @@ const Login = () => {
     handleLogin(email, password)
       .then((result) => {
         const user = result.user;
-        toast.info("Logged into your account");
+        toast.info("logged into your Account");
         navigate(from, { replace: true });
         form.reset();
         console.log(user);
@@ -47,7 +48,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         navigate(from, { replace: true });
-        toast.info("Logged in with Google ID");
+        toast.success("Logged In with Google Id");
       })
       .catch((error) => {
         toast.error(error.message);

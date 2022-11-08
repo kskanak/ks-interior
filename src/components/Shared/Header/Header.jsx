@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
+
 import logo from "../../../assets/icon.png";
 import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../../../routes/AuthProvider";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { user, handleLogout } = useContext(AuthContext);

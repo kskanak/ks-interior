@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider } from "react-photo-view";
 import AuthProvider from "./routes/AuthProvider";
@@ -14,7 +15,7 @@ root.render(
     <AuthProvider>
       <PhotoProvider>
         <App />
-        <ToastContainer />
+        <ToastContainer position="top-center" autoClose={2500} />
       </PhotoProvider>
     </AuthProvider>
   </React.StrictMode>
