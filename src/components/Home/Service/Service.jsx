@@ -11,6 +11,7 @@ const Service = () => {
       .then((data) => setServices(data))
       .catch((error) => toast.error(error.message));
   }, []);
+
   return (
     <div className="my-10 mx-8 md:mx-24">
       <h2 className="text-3xl font-medium mb-8 rounded-lg py-1 border-2  bg-gradient-to-tl from-blue-300 via-emerald-500 to-lime-600 text-gray-700">

@@ -1,6 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { json, Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { AuthContext } from "../../routes/AuthProvider";
@@ -32,10 +32,25 @@ const Login = () => {
     handleLogin(email, password)
       .then((result) => {
         const user = result.user;
+        const currenUser = {
+          email: user.email,
+        };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currenUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("ks-Interior-Token", data.token);
+          })
+          .catch((error) => console.log(error));
         toast.info("logged into your Account");
         navigate(from, { replace: true });
         form.reset();
-        console.log(user);
       })
       .catch((error) => {
         toast.error(error.message);

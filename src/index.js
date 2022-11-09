@@ -15,7 +15,7 @@ root.render(
     <AuthProvider>
       <PhotoProvider>
         <App />
-        <ToastContainer position="top-center" autoClose={2500} />
+        <ToastContainer position="top-center" autoClose={1500} />
       </PhotoProvider>
     </AuthProvider>
   </React.StrictMode>

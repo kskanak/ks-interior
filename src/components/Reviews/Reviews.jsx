@@ -4,17 +4,29 @@ import { AuthContext } from "../../routes/AuthProvider";
 import useTitle from "../../useTitle/UseTitle";
 import Reviewrow from "./Reviewrow";
 import noReviewImg from "../../assets/slider_image/no-review-found.png";
+import { Navigate } from "react-router-dom";
 
 const Reviews = () => {
   useTitle("Reviews");
-  const { user } = useContext(AuthContext);
+  const { user, handleLogout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/?email=${user?.email}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/reviews/?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("ks-Interior-Token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          handleLogout()
+            .then((result) => {})
+            .catch((error) => console.log(error));
+        }
+        return res.json();
+      })
       .then((data) => setReviews(data))
       .catch((error) => toast.error(error.message));
-  }, [user?.email]);
+  }, [user?.email, handleLogout]);
 
   const handleDelete = (_id) => {
     const agree = window.confirm("You wanna delete this comment?");

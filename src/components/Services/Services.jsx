@@ -7,6 +7,12 @@ import ServiceCard from "../Home/Service/ServiceCard";
 const Services = () => {
   useTitle("Services");
   const services = useLoaderData();
+  console.log(services);
+  if (services === null) {
+    <div className="loader-spinner flex justify-center items-center my-44">
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400 text-center"></div>
+    </div>;
+  }
 
   return (
     <div>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../useTitle/UseTitle";
 
 const EditReview = () => {
+  useTitle("EditReview");
   const review = useLoaderData();
 
   const [updateReview, setUpdateReview] = useState(review);
