@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../routes/AuthProvider";
 import useTitle from "../../useTitle/UseTitle";
 import Reviewrow from "./Reviewrow";
+import noReviewImg from "../../assets/slider_image/no-review-found.png";
 
 const Reviews = () => {
   useTitle("Reviews");
@@ -35,21 +36,21 @@ const Reviews = () => {
   };
 
   return (
-    <div>
+    <div className="mx-8 md:mx-18 mb-32">
       {reviews.length === 0 ? (
-        <p>You have no reviews to show... </p>
+        <img src={noReviewImg} alt="No review to show" className="" />
       ) : (
         <div className="overflow-x-auto w-full">
+          <h2 className="text-3xl font-semibold my-8">My reviews</h2>
           <table className="table w-full">
             <thead>
               <tr>
                 <th>
                   <></>
                 </th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
-                <th></th>
+                <th>Service</th>
+                <th>Review and ratings</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>

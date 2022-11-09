@@ -5,6 +5,7 @@ import Home from "../components/Home/Home";
 import Main from "../components/Layouts/Main";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
+import EditReview from "../components/Reviews/EditReview";
 import Reviews from "../components/Reviews/Reviews";
 import ServiceDetails from "../components/ServiceDetails/ServiceDetails";
 import Services from "../components/Services/Services";
@@ -32,6 +33,12 @@ const router = createBrowserRouter([
       { path: "/blog", element: <Blog></Blog> },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
+      {
+        path: "/update/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/update/${params.id}`),
+        element: <EditReview></EditReview>,
+      },
     ],
   },
 ]);

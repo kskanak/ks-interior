@@ -34,7 +34,7 @@ const Reviewform = ({ service_name, service_id }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged === true) {
-          toast.info("Your Review has sent");
+          toast.info("Your Review has added");
           form.reset();
         }
         console.log(data);
@@ -85,7 +85,7 @@ const Reviewform = ({ service_name, service_id }) => {
                   Review
                 </label>
                 <input
-                  id="address"
+                  id="message"
                   type="text"
                   name="message"
                   placeholder="Your Review"

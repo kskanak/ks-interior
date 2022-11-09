@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaPen, FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Reviewrow = ({ review, handleDelete }) => {
   const {
@@ -17,10 +19,10 @@ const Reviewrow = ({ review, handleDelete }) => {
       <th>
         <label>
           <button
-            className="px-3 py-1 rounded-lg hover:bg-red-700 text-white bg-red-500"
+            className="px-3  rounded-lg  border border-red-600 py-2 hover:text-red-700"
             onClick={() => handleDelete(_id)}
           >
-            X
+            <FaTrash />
           </button>
         </label>
       </th>
@@ -38,15 +40,17 @@ const Reviewrow = ({ review, handleDelete }) => {
         </div>
       </td>
       <td className="w-24">
-        <p className="text-xs">
-          {comments.length > 50 && comments.slice(0, 100)}...
-        </p>
+        <p className="text-xs">{comments}...</p>
         <br />
         <span className="badge badge-ghost badge-sm">Ratings : {ratings}</span>
       </td>
-      <td>Purple</td>
+
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        <Link to={`/update/${_id}`}>
+          <button className=" rounded-lg  border border-green-400 btn-sm  hover:text-green-700">
+            <FaPen />
+          </button>
+        </Link>
       </th>
     </tr>
   );
