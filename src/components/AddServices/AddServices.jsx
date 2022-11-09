@@ -112,7 +112,7 @@ const AddServices = () => {
                   type="text"
                   name="about"
                   placeholder="Write about service"
-                  className="w-full rounded-md  h-32 p-5 mt-3 focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 text-gray-900 font-semibold"
+                  className="w-full rounded-md  h-32 p-5 flex  mt-3 focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 text-gray-900 font-semibold"
                 />
               </div>
 

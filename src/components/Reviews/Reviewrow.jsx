@@ -19,7 +19,7 @@ const Reviewrow = ({ review, handleDelete }) => {
       <th>
         <label>
           <button
-            className="px-3  rounded-lg  border border-red-600 py-2 hover:text-red-700"
+            className="px-3  rounded-lg  border border-red-600 py-2 hover:text-red-700 hover:bg-slate-200"
             onClick={() => handleDelete(_id)}
           >
             <FaTrash />
@@ -45,7 +45,9 @@ const Reviewrow = ({ review, handleDelete }) => {
         <span className="badge badge-ghost badge-sm">Ratings : {ratings}</span>
       </td>
       <td className="w-24">
-        <span className="badge badge-ghost badge-sm">: {time}</span>
+        <span className="badge badge-ghost badge-sm">
+          {time ? time : "N/A"}
+        </span>
       </td>
 
       <th>

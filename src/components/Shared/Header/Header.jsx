@@ -39,7 +39,7 @@ const Header = () => {
                 isActive ? "text-green-500" : undefined
               }
             >
-              Reviews
+              My Reviews
             </NavLink>
           </li>
           <li>
@@ -49,7 +49,7 @@ const Header = () => {
                 isActive ? "text-green-500" : undefined
               }
             >
-              Add Services
+              Add Service
             </NavLink>
           </li>
         </>
@@ -61,7 +61,7 @@ const Header = () => {
             isActive ? "text-green-500" : undefined
           }
         >
-          BLog
+          Blog
         </NavLink>
       </li>
     </>

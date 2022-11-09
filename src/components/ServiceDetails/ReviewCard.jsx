@@ -10,7 +10,7 @@ const ReviewCard = ({ review }) => {
     <div>
       <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 bg-gradient-to-br from-violet-500 via-teal-300 to-pink-100 dark:text-gray-100">
         <div className="flex justify-between p-4">
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 h-16">
             <div>
               <img
                 src={image}
