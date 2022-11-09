@@ -50,6 +50,7 @@ const Reviews = () => {
                 </th>
                 <th>Service</th>
                 <th>Review and ratings</th>
+                <th>Posted</th>
                 <th>Edit</th>
               </tr>
             </thead>

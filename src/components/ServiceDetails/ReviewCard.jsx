@@ -2,7 +2,9 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 
 const ReviewCard = ({ review }) => {
-  const { comments, image, name, ratings, service_id, service_name } = review;
+  const { comments, image, name, ratings, service_id, service_name, time } =
+    review;
+  console.log(time);
 
   return (
     <div>
@@ -16,9 +18,13 @@ const ReviewCard = ({ review }) => {
                 className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
               />
             </div>
-            <div>
+
+            <div className="text-left">
               <h4 className="font-bold">{name}</h4>
-              <span className="text-xs dark:text-gray-400">2 days ago</span>
+              <span className="text-xs dark:text-gray-400">
+                <span className="font-medium">Posted</span> :{" "}
+                {time ? time : "N/A"}
+              </span>
             </div>
           </div>
           <div className="flex items-center space-x-2 dark:text-yellow-500">

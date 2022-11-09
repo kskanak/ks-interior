@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const Reviewrow = ({ review, handleDelete }) => {
     comments,
     email,
     image,
-    name,
+    time,
     ratings,
     service_id,
     service_name,
@@ -39,10 +39,13 @@ const Reviewrow = ({ review, handleDelete }) => {
           </div>
         </div>
       </td>
-      <td className="w-24">
+      <td>
         <p className="text-xs">{comments}...</p>
-        <br />
+
         <span className="badge badge-ghost badge-sm">Ratings : {ratings}</span>
+      </td>
+      <td className="w-24">
+        <span className="badge badge-ghost badge-sm">: {time}</span>
       </td>
 
       <th>

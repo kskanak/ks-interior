@@ -13,8 +13,9 @@ const Reviewform = ({ service_name, service_id }) => {
     const image = user?.photoURL;
     const email = user?.email || "unregistered";
     const ratings = form.ratings.value;
-
     const comments = form.message.value;
+    const time = new Date();
+
     const review = {
       service_id: service_id,
       service_name: service_name,
@@ -23,6 +24,7 @@ const Reviewform = ({ service_name, service_id }) => {
       comments,
       ratings,
       email,
+      time,
     };
     fetch("http://localhost:5000/reviews", {
       method: "POST",
