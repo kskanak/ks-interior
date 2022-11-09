@@ -14,6 +14,26 @@ const Reviews = () => {
       .then((data) => setReviews(data))
       .catch((error) => toast.error(error.message));
   }, [user?.email]);
+
+  const handleDelete = (_id) => {
+    const agree = window.confirm("You wanna delete this comment?");
+    if (agree) {
+      fetch(`http://localhost:5000/reviews/${_id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            const restReview = reviews.filter((review) => review._id !== _id);
+            setReviews(restReview);
+            toast.info("Review Deleted");
+          }
+          console.log(data);
+        })
+        .catch((error) => console.log(error));
+    }
+  };
+
   return (
     <div>
       {reviews.length === 0 ? (
@@ -34,7 +54,11 @@ const Reviews = () => {
             </thead>
             <tbody>
               {reviews.map((review) => (
-                <Reviewrow key={review._id} review={review}></Reviewrow>
+                <Reviewrow
+                  key={review._id}
+                  review={review}
+                  handleDelete={handleDelete}
+                ></Reviewrow>
               ))}
             </tbody>
           </table>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Reviewrow = ({ review }) => {
+const Reviewrow = ({ review, handleDelete }) => {
   const {
     comments,
     email,
@@ -11,12 +11,15 @@ const Reviewrow = ({ review }) => {
     service_name,
     _id,
   } = review;
-  console.log(review);
+
   return (
     <tr>
       <th>
         <label>
-          <button className="px-3 py-1 rounded-lg hover:bg-red-700 text-white bg-red-500">
+          <button
+            className="px-3 py-1 rounded-lg hover:bg-red-700 text-white bg-red-500"
+            onClick={() => handleDelete(_id)}
+          >
             X
           </button>
         </label>
