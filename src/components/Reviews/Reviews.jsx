@@ -70,13 +70,15 @@ const Reviews = () => {
         <h2 className="text-4xl font-bold my-8 underline text-emerald-700">
           My reviews
         </h2>
-        <table className="table w-full">
-          <thead className="">
-            <tr className="bg-accent">
+        <table className="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th>
+                <></>
+              </th>
               <th>Service</th>
               <th>Review and ratings</th>
               <th>Posted</th>
-              <th>Delete</th>
               <th>Edit</th>
             </tr>
           </thead>

@@ -16,6 +16,16 @@ const Reviewrow = ({ review, handleDelete }) => {
 
   return (
     <tr>
+      <td>
+        <label>
+          <button
+            className="px-3  rounded-lg  border border-red-600 py-2 hover:text-red-700 hover:bg-slate-200"
+            onClick={() => handleDelete(_id)}
+          >
+            <FaTrash />
+          </button>
+        </label>
+      </td>
       <th>
         <div className="flex items-center space-x-3">
           <div className="avatar">
@@ -42,16 +52,7 @@ const Reviewrow = ({ review, handleDelete }) => {
           {time ? time : "N/A"}
         </span>
       </td>
-      <td>
-        <label>
-          <button
-            className="px-3  rounded-lg  border border-red-600 py-2 hover:text-red-700 hover:bg-slate-200"
-            onClick={() => handleDelete(_id)}
-          >
-            <FaTrash />
-          </button>
-        </label>
-      </td>
+
       <th>
         <Link to={`/update/${_id}`}>
           <button className=" rounded-lg  border border-green-400 btn-sm  hover:text-green-700">
