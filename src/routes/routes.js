@@ -10,6 +10,7 @@ import EditReview from "../components/Reviews/EditReview";
 import Reviews from "../components/Reviews/Reviews";
 import ServiceDetails from "../components/ServiceDetails/ServiceDetails";
 import Services from "../components/Services/Services";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
       { path: "/home", element: <Home></Home> },
       {
         path: "/services",
-        // loader: () => fetch("http://localhost:5000/allservices"),
+
         element: <Services></Services>,
       },
       {
@@ -29,8 +30,22 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/allservices/${params.id}`),
         element: <ServiceDetails></ServiceDetails>,
       },
-      { path: "/reviews", element: <Reviews></Reviews> },
-      { path: "/addservices", element: <AddServices></AddServices> },
+      {
+        path: "/reviews",
+        element: (
+          <PrivateRoutes>
+            <Reviews></Reviews>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/addservices",
+        element: (
+          <PrivateRoutes>
+            <AddServices></AddServices>
+          </PrivateRoutes>
+        ),
+      },
       { path: "/blog", element: <Blog></Blog> },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },

@@ -24,7 +24,7 @@ const Service = () => {
       </div>
       <div className="see-all-btn my-8">
         <Link to="/services">
-          <button className="px-3 py-2 bg-gradient-to-tl text-xl from-teal-500 via-teal-600 to-amber-800 rounded-lg text-white font-semibold hover:px-5 duration-200">
+          <button className="px-8 py-2 bg-gradient-to-tl text-xl  from-teal-500 via-teal-600 to-amber-800 rounded-lg text-white font-semibold hover:px-5 hover:bg-gradient-to-r from-purple-500 via-teal-600 to-orange-300 duration-200">
             See All
           </button>
         </Link>

@@ -15,7 +15,6 @@ const Services = () => {
       .then((data) => setServices(data))
       .catch((error) => toast.error(error.message));
   }, []);
-  console.log(services);
 
   return (
     <div>

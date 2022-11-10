@@ -1,6 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { AuthContext } from "../../routes/AuthProvider";
@@ -19,6 +19,7 @@ const Register = () => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const [password, setPassword] = useState("");
+  const nav = useNavigate();
 
   const handlePassword = (e) => {
     console.log(e.target.value);
@@ -51,6 +52,8 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUserInfo(photoURL, displayName);
+
+        nav("/");
 
         toast.success("Congratulation your accounts has been created");
 

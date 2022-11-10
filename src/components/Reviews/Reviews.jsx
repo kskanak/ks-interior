@@ -12,9 +12,9 @@ const Reviews = () => {
   const { user, handleLogout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    // if (!user?.email) {
-    //   return;
-    // }
+    if (!user?.email) {
+      return;
+    }
     fetch(`http://localhost:5000/reviews/?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("ks-Interior-Token")}`,
@@ -26,7 +26,9 @@ const Reviews = () => {
         }
         return res.json();
       })
-      .then((data) => setReviews(data))
+      .then((data) => {
+        setReviews(data);
+      })
       .catch((error) => toast.error(error.message));
   }, [user?.email, handleLogout]);
 
@@ -60,35 +62,35 @@ const Reviews = () => {
 
   return (
     <div className="mx-8 md:mx-18 mb-32">
-      {reviews?.length === 0 ? (
+      {reviews?.length === 0 && (
         <img src={noReviewImg} alt="No review to show" className="" />
-      ) : (
-        <div className="overflow-x-auto w-full">
-          <h2 className="text-4xl font-bold my-8 underline text-emerald-700">
-            My reviews
-          </h2>
-          <table className="table w-full">
-            <thead className="">
-              <tr className="bg-accent">
-                <th>Service</th>
-                <th>Review and ratings</th>
-                <th>Posted</th>
-                <th>Delete</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reviews?.map((review) => (
-                <Reviewrow
-                  key={review._id}
-                  review={review}
-                  handleDelete={handleDelete}
-                ></Reviewrow>
-              ))}
-            </tbody>
-          </table>
-        </div>
       )}
+
+      <div className="overflow-x-auto w-full">
+        <h2 className="text-4xl font-bold my-8 underline text-emerald-700">
+          My reviews
+        </h2>
+        <table className="table w-full">
+          <thead className="">
+            <tr className="bg-accent">
+              <th>Service</th>
+              <th>Review and ratings</th>
+              <th>Posted</th>
+              <th>Delete</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reviews?.map((review) => (
+              <Reviewrow
+                key={review._id}
+                review={review}
+                handleDelete={handleDelete}
+              ></Reviewrow>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

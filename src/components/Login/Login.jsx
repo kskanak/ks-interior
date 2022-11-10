@@ -4,15 +4,13 @@ import { json, Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { AuthContext } from "../../routes/AuthProvider";
-import { jwtAuthToken } from "../../useTitle/jwtToken/JwtToken";
+import { jwtAuthToken } from "../../jwtToken/JwtToken";
 import useTitle from "../../useTitle/UseTitle";
 
 const Login = () => {
   useTitle("Login");
   const {
     user,
-    loader,
-    setloader,
     handleLogin,
     handleGooglesignIn,
     handleGithubsignIn,
@@ -23,6 +21,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
+
   const [passWordResetMail, setPasswordResetMail] = useState("");
 
   const handleSubmit = (event) => {
@@ -35,7 +34,6 @@ const Login = () => {
     handleLogin(email, password)
       .then((result) => {
         const user = result.user;
-
         // get jwt toke
         jwtAuthToken(user);
         toast.info("logged into your Account");
@@ -94,11 +92,7 @@ const Login = () => {
         toast.error(error.message);
       });
   };
-  if (loader) {
-    <div className="loader-spinner flex justify-center items-center my-44">
-      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400 text-center"></div>
-    </div>;
-  }
+
   return (
     <div className=" bg-slate-700 py-24 px-10 md:px-10">
       <div className=" md:w-2/5 mx-auto p-8 space-y-3 rounded-xl bg-gradient-to-tl from-indigo-600 via-stone-600 to-sky-800 text-gray-100 ">

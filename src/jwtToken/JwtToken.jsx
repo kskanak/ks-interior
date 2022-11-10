@@ -12,7 +12,6 @@ export const jwtAuthToken = (user) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       localStorage.setItem("ks-Interior-Token", data.token);
     })
     .catch((error) => console.log(error));
