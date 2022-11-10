@@ -3,7 +3,7 @@ export const jwtAuthToken = (user) => {
   const currenUser = {
     email: user.email,
   };
-  fetch("http://localhost:5000/jwt", {
+  fetch("https://ks-interior-server-side.vercel.app/jwt", {
     method: "POST",
     headers: {
       "content-type": "application/json",

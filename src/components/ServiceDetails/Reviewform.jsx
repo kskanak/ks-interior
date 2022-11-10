@@ -26,7 +26,7 @@ const Reviewform = ({ service_name, service_id }) => {
       email,
       time,
     };
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://ks-interior-server-side.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",

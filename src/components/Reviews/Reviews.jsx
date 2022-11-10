@@ -15,11 +15,14 @@ const Reviews = () => {
     if (!user?.email) {
       return;
     }
-    fetch(`http://localhost:5000/reviews/?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("ks-Interior-Token")}`,
-      },
-    })
+    fetch(
+      `https://ks-interior-server-side.vercel.app/reviews/?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("ks-Interior-Token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return handleLogout();
@@ -43,7 +46,7 @@ const Reviews = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/reviews/${_id}`, {
+        fetch(`https://ks-interior-server-side.vercel.app/reviews/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

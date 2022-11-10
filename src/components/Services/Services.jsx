@@ -10,7 +10,7 @@ const Services = () => {
   // const services = useLoaderData();
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/allservices")
+    fetch("https://ks-interior-server-side.vercel.app/allservices")
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch((error) => toast.error(error.message));

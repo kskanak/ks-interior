@@ -27,7 +27,9 @@ const router = createBrowserRouter([
       {
         path: "/services/:id",
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/allservices/${params.id}`),
+          fetch(
+            `https://ks-interior-server-side.vercel.app/allservices/${params.id}`
+          ),
         element: <ServiceDetails></ServiceDetails>,
       },
       {
@@ -52,7 +54,9 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/update/${params.id}`),
+          fetch(
+            `https://ks-interior-server-side.vercel.app/update/${params.id}`
+          ),
         element: <EditReview></EditReview>,
       },
     ],

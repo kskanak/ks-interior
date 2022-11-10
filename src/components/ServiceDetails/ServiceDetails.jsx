@@ -22,7 +22,7 @@ const ServiceDetails = () => {
   } = useLoaderData();
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${service_id}`)
+    fetch(`https://ks-interior-server-side.vercel.app/reviews/${service_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => toast.error(error.message));
