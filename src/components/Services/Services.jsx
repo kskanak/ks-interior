@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+
 import { toast } from "react-toastify";
 import useTitle from "../../useTitle/UseTitle";
 import Offers from "../Home/Offers/Offers";

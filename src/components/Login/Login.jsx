@@ -9,13 +9,8 @@ import useTitle from "../../useTitle/UseTitle";
 
 const Login = () => {
   useTitle("Login");
-  const {
-    user,
-    handleLogin,
-    handleGooglesignIn,
-    handleGithubsignIn,
-    passwordReset,
-  } = useContext(AuthContext);
+  const { handleLogin, handleGooglesignIn, handleGithubsignIn, passwordReset } =
+    useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const location = useLocation();

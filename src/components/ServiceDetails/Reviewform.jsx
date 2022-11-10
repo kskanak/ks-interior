@@ -39,7 +39,6 @@ const Reviewform = ({ service_name, service_id }) => {
           toast.info("Your Review has added");
           form.reset();
         }
-        console.log(data);
       })
       .catch((error) => toast.error(error.message));
   };
