@@ -17,16 +17,6 @@ const Reviewrow = ({ review, handleDelete }) => {
   return (
     <tr>
       <th>
-        <label>
-          <button
-            className="px-3  rounded-lg  border border-red-600 py-2 hover:text-red-700 hover:bg-slate-200"
-            onClick={() => handleDelete(_id)}
-          >
-            <FaTrash />
-          </button>
-        </label>
-      </th>
-      <td>
         <div className="flex items-center space-x-3">
           <div className="avatar">
             <div className="mask mask-squircle w-12 h-12">
@@ -38,9 +28,12 @@ const Reviewrow = ({ review, handleDelete }) => {
             <div className="text-sm opacity-50"> Service_id : {_id}</div>
           </div>
         </div>
-      </td>
+      </th>
+
       <td>
-        <p className="text-xs">{comments}...</p>
+        <p className="text-xs" title={comments}>
+          {comments.length > 60 ? comments.slice(0, 50) : comments}...
+        </p>
 
         <span className="badge badge-ghost badge-sm">Ratings : {ratings}</span>
       </td>
@@ -49,7 +42,16 @@ const Reviewrow = ({ review, handleDelete }) => {
           {time ? time : "N/A"}
         </span>
       </td>
-
+      <td>
+        <label>
+          <button
+            className="px-3  rounded-lg  border border-red-600 py-2 hover:text-red-700 hover:bg-slate-200"
+            onClick={() => handleDelete(_id)}
+          >
+            <FaTrash />
+          </button>
+        </label>
+      </td>
       <th>
         <Link to={`/update/${_id}`}>
           <button className=" rounded-lg  border border-green-400 btn-sm  hover:text-green-700">

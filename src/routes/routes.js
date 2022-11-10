@@ -9,7 +9,6 @@ import EditReview from "../components/Reviews/EditReview";
 import Reviews from "../components/Reviews/Reviews";
 import ServiceDetails from "../components/ServiceDetails/ServiceDetails";
 import Services from "../components/Services/Services";
-import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -20,18 +19,14 @@ const router = createBrowserRouter([
       { path: "/home", element: <Home></Home> },
       {
         path: "/services",
-        loader: () => fetch("http://localhost:5000/allservices"),
+        // loader: () => fetch("http://localhost:5000/allservices"),
         element: <Services></Services>,
       },
       {
         path: "/services/:id",
         loader: async ({ params }) =>
           fetch(`http://localhost:5000/allservices/${params.id}`),
-        element: (
-          <PrivateRoutes>
-            <ServiceDetails></ServiceDetails>
-          </PrivateRoutes>
-        ),
+        element: <ServiceDetails></ServiceDetails>,
       },
       { path: "/reviews", element: <Reviews></Reviews> },
       { path: "/addservices", element: <AddServices></AddServices> },

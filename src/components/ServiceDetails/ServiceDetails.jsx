@@ -5,8 +5,10 @@ import { toast } from "react-toastify";
 import ReviewCard from "./ReviewCard";
 import { AuthContext } from "../../routes/AuthProvider";
 import Reviewform from "./Reviewform";
+import useTitle from "../../useTitle/UseTitle";
 
 const ServiceDetails = () => {
+  useTitle("Service_Details");
   const { user } = useContext(AuthContext);
   const {
     service_id,
@@ -31,7 +33,7 @@ const ServiceDetails = () => {
       {/* details -section */}
       <div className="details-section ">
         {/* service tilte */}
-        <h2 className="text-3xl font-medium mb-8 rounded-lg py-1 border-2  bg-gradient-to-br from-teal-200 via-green-400 to-orange-300">
+        <h2 className="text-3xl font-bold text-white mb-8 rounded-lg py-1 border-2 bg-gradient-to-bl from-green-400 via-teal-900 to-emerald-600">
           {service_name} Details
         </h2>
 
@@ -46,7 +48,7 @@ const ServiceDetails = () => {
           </div>
 
           {/* details container */}
-          <div className="details-container md:w-2/4 text-left ml-6 space-y-2 mt-10 md:mt-0">
+          <div className="details-container md:w-2/4 text-left ml-6 space-y-2 mt-10 md:mt-0 text-muted">
             <h2 className="text-2xl font-medium text-center md:text-left">
               Service : {service_name}
             </h2>
@@ -58,7 +60,7 @@ const ServiceDetails = () => {
               Ratings : {ratings} <FaStar className="text-yellow-500 ml-1" />
             </h2>
             <h2 className="text-sm font-medium flex items-center">
-              Service_Details : {details}{" "}
+              {details && "Service_Details : "} {details}{" "}
             </h2>
           </div>
         </div>
@@ -66,7 +68,7 @@ const ServiceDetails = () => {
 
       {/* review section */}
       <div className="review-sections div my-32">
-        <h2 className="text-3xl font-medium mb-8 rounded-lg py-1 border-2  bg-gradient-to-br from-teal-200 via-green-400 to-orange-300">
+        <h2 className="text-3xl font-bold text-white mb-8 rounded-lg py-1 border-2 bg-gradient-to-bl from-green-400 via-teal-900 to-emerald-600">
           Client Review on {service_name}
         </h2>
         <div className="review-container grid md:grid-cols-2 gap-5">
@@ -87,7 +89,7 @@ const ServiceDetails = () => {
             <Link to="/login" className="text-blue-600">
               Login
             </Link>{" "}
-            to send your Reviews
+            to add your Review..
           </p>
         )}
       </div>

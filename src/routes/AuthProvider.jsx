@@ -38,6 +38,7 @@ const AuthProvider = ({ children }) => {
   // sign out implement
 
   const handleLogout = () => {
+    localStorage.removeItem("ks-Interior-Token");
     setLoader(true);
     return signOut(auth);
   };
@@ -81,6 +82,7 @@ const AuthProvider = ({ children }) => {
     handleGooglesignIn,
     handleGithubsignIn,
     loader,
+    setLoader,
     passwordReset,
   };
   return (

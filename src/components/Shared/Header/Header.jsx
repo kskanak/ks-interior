@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 
 import logo from "../../../assets/icon.png";
 import { FaUser } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const Header = () => {
   const { user, handleLogout } = useContext(AuthContext);
+  const nav = useNavigate();
   const menuItem = (
     <>
       <li>
@@ -69,6 +70,7 @@ const Header = () => {
   const handleSignout = () => {
     handleLogout()
       .then((result) => {
+        nav("/");
         toast.info("Sign out successfull");
       })
       .catch((error) => {
@@ -127,15 +129,15 @@ const Header = () => {
           </div>
           {user && user?.uid ? (
             <button
-              className="btn btn-outline btn-accent btn-sm mx-2"
+              className="px-2 py-2 bg-gradient-to-br from-slate-400 via-green-800 to-yellow-200 rounded-lg hover:bg-gradient-to-l from-indigo-500 via-emerald-500 to-current ml-3 text-white mx-2"
               onClick={handleSignout}
             >
-              LogOut
+              Sign Out
             </button>
           ) : (
             <div className="login-regis-btn">
               <Link to="/login">
-                <button className=" px-2 py-2 bg-gradient-to-br from-black via-orange-500 to-white rounded-lg hover:bg-gradient-to-tl from-blue-200 via-red-500 to-cyan-500 ml-3 text-white">
+                <button className=" px-2 py-2 bg-gradient-to-br from-teal-700 via-emerald-900 to-red-500 rounded-lg hover:bg-gradient-to-l from-indigo-500 via-emerald-500 to-current ml-3 text-white">
                   Login
                 </button>
               </Link>

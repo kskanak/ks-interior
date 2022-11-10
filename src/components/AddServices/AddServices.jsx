@@ -41,7 +41,9 @@ const AddServices = () => {
   };
   return (
     <div>
-      <h2 className="my-8 font-semibold text-3xl">Add New Services</h2>
+      <h2 className="my-8 font-bold text-4xl text-accent underline">
+        Add New Service
+      </h2>
       <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
         <form
           noValidate=""
@@ -49,7 +51,7 @@ const AddServices = () => {
           action=""
           className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
         >
-          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-900 text-white">
+          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gradient-to-t from-sky-800 via-green-500 to-slate-800 border-2 text-white">
             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
               <div className="col-span-full sm:col-span-3">
                 <label htmlFor="service_name" className="text-sm">
@@ -117,14 +119,16 @@ const AddServices = () => {
               </div>
 
               <div className="submit-btn col-span-full text-center">
-                <button className="px-4 py-2 w-3/4 mx-auto border bg-color-orange rounded-md dark:border-gray-100">
+                <button className="px-4 py-2 w-3/4 mx-auto border bg-gradient-to-bl from-fuchsia-100 via-emerald-800 to-emerald-500 rounded-md font-medium text-xl hover:bg-gradient-to-br from-blue-900 via-lime-400 to-gray-300">
                   Add Service
                 </button>
               </div>
             </div>
             <div className="space-y-2 col-span-full lg:col-span-1 flex  flex-col justify-center order-first md:order-last">
-              <p className="font-medium">Add a Service</p>
-              <p className="text-xs">Add a service to to service list</p>
+              <p className="font-medium text-3xl">Add a Service</p>
+              <p className="text-xs">
+                Add a service to serve best for the Others.
+              </p>
             </div>
           </fieldset>
         </form>

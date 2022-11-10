@@ -3,7 +3,7 @@ import React from "react";
 const Info = () => {
   return (
     <div className="m-8 md:mx-24 my-32 ">
-      <h2 className="text-3xl font-medium mb-8 rounded-lg  border-2 py-1  bg-gradient-to-tl from-blue-300 via-emerald-500 to-lime-600 text-gray-700">
+      <h2 className="text-3xl font-bold mb-8 rounded-lg  border-2 py-1  bg-gradient-to-tl from-blue-300 via-emerald-500 to-lime-600 text-white">
         Info
       </h2>
       <section className="p-4 my-6 md:p-8  text-gray-100 bg-gradient-to-tl from-rose-700 via-cyan-500 to-black rounded-lg">

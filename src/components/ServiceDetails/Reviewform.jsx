@@ -52,7 +52,7 @@ const Reviewform = ({ service_name, service_id }) => {
           action=""
           className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
         >
-          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-900 text-white">
+          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gradient-to-t from-sky-800 via-green-500 to-slate-800 text-white">
             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
               <div className="col-span-full sm:col-span-3">
                 <label htmlFor="email" className="text-sm">
@@ -96,13 +96,13 @@ const Reviewform = ({ service_name, service_id }) => {
               </div>
 
               <div className="submit-btn col-span-full text-center">
-                <button className="px-4 py-2 w-3/4 mx-auto border bg-color-orange rounded-md dark:border-gray-100">
+                <button className="px-4 py-2 w-3/4 mx-auto border bg-color-orange rounded-md dark:border-gray-100 hover:bg-gradient-to-br from-slate-400 via-green-800 to-yellow-200 bg-emerald-800 font-medium text-xl">
                   Send Review
                 </button>
               </div>
             </div>
             <div className="space-y-2 col-span-full lg:col-span-1 flex  flex-col justify-center order-first md:order-last">
-              <p className="font-medium">Review Form</p>
+              <p className="font-medium text-3xl">Review Form</p>
               <p className="text-xs">
                 Send me your experience and review about the services
               </p>

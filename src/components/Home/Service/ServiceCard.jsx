@@ -15,7 +15,7 @@ const ServiceCard = ({ service }) => {
             className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
           />
         </PhotoView>
-        <div className="flex flex-col justify-between p-6 space-y-8">
+        <div className="flex flex-col justify-between p-6 space-y-8 text-muted">
           <div className="space-y-2">
             <h2 className="text-3xl font-semibold tracking-wide">
               {service_name}

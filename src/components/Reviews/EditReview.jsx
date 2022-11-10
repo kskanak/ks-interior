@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 import useTitle from "../../useTitle/UseTitle";
 
 const EditReview = () => {
@@ -19,7 +20,11 @@ const EditReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.info("Data Updated");
+
+          console.log(data);
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -33,9 +38,9 @@ const EditReview = () => {
     console.log(newReview, updateReview);
   };
   return (
-    <div className="mx-8 md:mx-32 my-10">
-      <div className="mb-8 text-center">
-        <h1 className="my-3 text-4xl font-bold">
+    <div className="mx-8 md:mx-32 my-10 ">
+      <div className="mb-10 text-center">
+        <h1 className="my-3 text-4xl font-bold text-accent underline">
           Update Review for {review.service_name}
         </h1>
       </div>
@@ -43,11 +48,14 @@ const EditReview = () => {
         noValidate=""
         action=""
         onSubmit={handleUpdate}
-        className="space-y-12 ng-untouched ng-pristine ng-valid"
+        className="space-y-12 ng-untouched ng-pristine ng-valid bg-gradient-to-br from-teal-700 via-emerald-900 to-red-500 p-10 rounded-lg"
       >
         <div className="space-y-4">
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm text-left">
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm text-left font-bold text-white"
+            >
               Ratings
             </label>
             <input
@@ -62,7 +70,10 @@ const EditReview = () => {
           </div>
           <div>
             <div className="flex justify-between mb-2">
-              <label htmlFor="comments" className="text-sm">
+              <label
+                htmlFor="comments"
+                className="text-sm font-bold text-white"
+              >
                 Your Review
               </label>
             </div>
@@ -78,7 +89,7 @@ const EditReview = () => {
         </div>
         <div className="space-y-2">
           <div>
-            <button className="w-full px-8 py-3 font-semibold rounded-md bg-violet-400 dark:text-gray-900">
+            <button className="w-full px-8 py-3 font-semibold rounded-md bg-gradient-to-br from-slate-400 via-green-800 to-yellow-200 text-xl hover:bg-gradient-to-l from-indigo-500 via-emerald-500 to-current text-white">
               Update
             </button>
           </div>

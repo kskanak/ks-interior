@@ -4,12 +4,15 @@ import { json, Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { AuthContext } from "../../routes/AuthProvider";
+import { jwtAuthToken } from "../../useTitle/jwtToken/JwtToken";
 import useTitle from "../../useTitle/UseTitle";
 
 const Login = () => {
   useTitle("Login");
   const {
     user,
+    loader,
+    setloader,
     handleLogin,
     handleGooglesignIn,
     handleGithubsignIn,
@@ -32,22 +35,9 @@ const Login = () => {
     handleLogin(email, password)
       .then((result) => {
         const user = result.user;
-        const currenUser = {
-          email: user.email,
-        };
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currenUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            localStorage.setItem("ks-Interior-Token", data.token);
-          })
-          .catch((error) => console.log(error));
+
+        // get jwt toke
+        jwtAuthToken(user);
         toast.info("logged into your Account");
         navigate(from, { replace: true });
         form.reset();
@@ -62,6 +52,10 @@ const Login = () => {
     handleGooglesignIn(googleProvider)
       .then((result) => {
         const user = result.user;
+
+        // get jwt token
+        jwtAuthToken(user);
+
         navigate(from, { replace: true });
         toast.success("Logged In with Google Id");
       })
@@ -74,6 +68,7 @@ const Login = () => {
     handleGithubsignIn(githubProvider)
       .then((result) => {
         const user = result.user;
+        jwtAuthToken(user);
         navigate(from, { replace: true });
         toast.info("Logged in with Github ID");
       })
@@ -99,6 +94,11 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+  if (loader) {
+    <div className="loader-spinner flex justify-center items-center my-44">
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400 text-center"></div>
+    </div>;
+  }
   return (
     <div className=" bg-slate-700 py-24 px-10 md:px-10">
       <div className=" md:w-2/5 mx-auto p-8 space-y-3 rounded-xl bg-gradient-to-tl from-indigo-600 via-stone-600 to-sky-800 text-gray-100 ">
@@ -150,7 +150,7 @@ const Login = () => {
               </a>
             </div>
           </div>
-          <button className="block w-full p-3 text-center rounded-md text-gray-900 font-semibold bg-gradient-to-tl from-blue-200 via-red-500 to-cyan-500 duration-150 hover:bg-gradient-to-r from-transparent via-cyan-700 to-rose-500">
+          <button className="block w-full text-white p-3 text-center rounded-md  font-semibold bg-gradient-to-tl from-blue-200 via-red-500 to-cyan-500 duration-150 hover:bg-gradient-to-r from-transparent via-cyan-700 to-rose-500">
             Login
           </button>
         </form>

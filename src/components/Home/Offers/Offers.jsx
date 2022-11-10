@@ -3,7 +3,7 @@ import React from "react";
 const Offers = () => {
   return (
     <div className="mx-8 md:mx-24  my-32">
-      <h2 className=" py-1 text-3xl font-medium mb-8 rounded-lg  border-2  bg-gradient-to-tl from-blue-300 via-emerald-500 to-lime-600 text-gray-700">
+      <h2 className=" py-1 text-3xl font-bold mb-8 rounded-lg  border-2  bg-gradient-to-tl from-blue-300 via-emerald-500 to-lime-600 text-white">
         Mega Offer
       </h2>
       <div className="p-6 py-12 bg-gradient-to-tl from-teal-900 via-cyan-300 to-current text-gray-900 rounded-lg">
