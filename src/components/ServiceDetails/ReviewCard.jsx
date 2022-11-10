@@ -4,7 +4,6 @@ import { FaStar } from "react-icons/fa";
 const ReviewCard = ({ review }) => {
   const { comments, image, name, ratings, service_id, service_name, time } =
     review;
-  console.log(time);
 
   return (
     <div>

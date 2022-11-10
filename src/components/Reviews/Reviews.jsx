@@ -5,6 +5,7 @@ import useTitle from "../../useTitle/UseTitle";
 import Reviewrow from "./Reviewrow";
 import noReviewImg from "../../assets/slider_image/no-review-found.png";
 import { Navigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Reviews = () => {
   useTitle("My_Reviews");
@@ -30,22 +31,49 @@ const Reviews = () => {
   }, [user?.email, handleLogout]);
 
   const handleDelete = (_id) => {
-    const agree = window.confirm("You wanna delete this comment?");
-    if (agree) {
-      fetch(`http://localhost:5000/reviews/${_id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount > 0) {
-            const restReview = reviews.filter((review) => review._id !== _id);
-            setReviews(restReview);
-            toast.info("Review Deleted");
-          }
-          console.log(data);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/reviews/${_id}`, {
+          method: "DELETE",
         })
-        .catch((error) => console.log(error));
-    }
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              const restReview = reviews.filter((review) => review._id !== _id);
+              setReviews(restReview);
+              toast.info("Review Deleted");
+            }
+            console.log(data);
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+
+    // const agree = window.confirm("You wanna delete this comment?");
+
+    // if (agree) {
+    //   fetch(`http://localhost:5000/reviews/${_id}`, {
+    //     method: "DELETE",
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       if (data.deletedCount > 0) {
+    //         const restReview = reviews.filter((review) => review._id !== _id);
+    //         setReviews(restReview);
+    //         toast.info("Review Deleted");
+    //       }
+    //       console.log(data);
+    //     })
+    //     .catch((error) => console.log(error));
+    // }
   };
 
   return (

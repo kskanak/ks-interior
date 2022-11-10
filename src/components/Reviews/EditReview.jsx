@@ -29,7 +29,7 @@ const EditReview = () => {
       .catch((error) => console.log(error));
   };
 
-  const handleBlue = (e) => {
+  const handleBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     const newReview = { ...updateReview };
@@ -62,7 +62,7 @@ const EditReview = () => {
               type="text"
               name="ratings"
               id="Ratings"
-              onBlur={handleBlue}
+              onBlur={handleBlur}
               defaultValue={review.ratings}
               placeholder=" between 1-5"
               className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
@@ -82,7 +82,7 @@ const EditReview = () => {
               name="comments"
               id="comments"
               defaultValue={review.comments}
-              onBlur={handleBlue}
+              onBlur={handleBlur}
               className="w-full px-3 py-2 h-32  border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
             />
           </div>

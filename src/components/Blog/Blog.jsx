@@ -10,6 +10,7 @@ const Blog = () => {
           <h2 className="mb-12 text-4xl font-bold leading-none text-center sm:text-5xl text-emerald-800 underline">
             Blog
           </h2>
+
           <div className="divide-y divide-gray-700">
             <div className="py-6 space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
               <h3 className="font-semibold md:col-span-5">
@@ -78,6 +79,8 @@ const Blog = () => {
           </div>
         </div>
       </section>
+
+      {/*  */}
     </div>
   );
 };
